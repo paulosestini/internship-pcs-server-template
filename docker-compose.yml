@@ -17,6 +17,23 @@ services:
     networks:
       - app-network
     profiles: ["default", "local"]
+  db-test:
+    container_name: db_test
+    image: postgres:14.6
+    restart: always
+    volumes:
+      - db-test-data
+    environment:
+      - POSTGRES_DB=postgres_test
+      - POSTGRES_USER=postgres_test
+      - POSTGRES_PASSWORD=postgres_test
+    ports:
+      - 5433:5432
+    expose:
+      - 5432
+    networks:
+      - app-network
+    profiles: [ "default", "local" ]
   app:
     container_name: app
     depends_on:
@@ -36,6 +53,7 @@ services:
     profiles: ["default"]
 
 volumes:
+  db-test-data:
   db-data:
 
 networks:
