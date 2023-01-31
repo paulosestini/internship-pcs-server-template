@@ -8,20 +8,19 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureHttpGraphQlTester;
+import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureGraphQlTester;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.graphql.test.tester.HttpGraphQlTester;
+import org.springframework.graphql.test.tester.GraphQlTester;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.HashMap;
 import java.util.Map;
-
 @SpringBootTest
-@AutoConfigureHttpGraphQlTester
+@AutoConfigureGraphQlTester
 @ActiveProfiles("test")
 public class UserTest {
     @Autowired
-    private HttpGraphQlTester tester;
+    private GraphQlTester tester;
     @Autowired
     private UserRepository repository;
 
@@ -32,6 +31,7 @@ public class UserTest {
 
     @Test
     public void createUser() {
+        System.out.println(tester.getClass());
         Map<String, Object> input = new HashMap<String, Object>();
         input.put("name", "Paulo");
         input.put("password", "abcd123");
