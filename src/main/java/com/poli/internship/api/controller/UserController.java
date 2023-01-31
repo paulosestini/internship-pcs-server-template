@@ -13,15 +13,10 @@ import java.util.Map;
 
 @Controller
 public class UserController {
-    public final GetUserUseCase getUserUseCase;
-    public final CreateUserUseCase createUserUseCase;
-
     @Autowired
-    public UserController(GetUserUseCase getUserUseCase, CreateUserUseCase createUserUseCase) {
-        this.getUserUseCase = getUserUseCase;
-        this.createUserUseCase = createUserUseCase;
-    }
-
+    public GetUserUseCase getUserUseCase;
+    @Autowired
+    public CreateUserUseCase createUserUseCase;
 
     @QueryMapping
     public UserModel getUser(@Argument Map input) {
