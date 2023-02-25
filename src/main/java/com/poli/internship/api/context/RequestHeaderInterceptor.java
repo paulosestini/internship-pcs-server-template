@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class RequestHeaderInterceptor implements WebGraphQlInterceptor {
+class RequestHeaderInterceptor implements WebGraphQlInterceptor {
 
     @Override
     public Mono<WebGraphQlResponse> intercept (WebGraphQlRequest request, Chain chain) {
