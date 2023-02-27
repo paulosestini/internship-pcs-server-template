@@ -8,7 +8,7 @@ Template for servers/services of the project *Internship 4.0* from Poli-USP.
 
 ```bash
 docker-compose --profile local up -d
-mvn springboot:run
+mvn spring-boot:run
 ```
 
 ### In a docker container
