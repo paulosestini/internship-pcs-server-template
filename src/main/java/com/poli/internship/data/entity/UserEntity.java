@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 @Entity
 public class UserEntity {
     @Id
@@ -13,11 +15,14 @@ public class UserEntity {
     private String name;
     private String password;
 
+    private LocalDate birthdate;
+
     protected UserEntity() {}
 
-    public UserEntity(String name, String password) {
+    public UserEntity(String name, String password, LocalDate birthdate) {
         this.name = name;
         this.password = password;
+        this.birthdate = birthdate;
     }
 
     public Long getId() {
@@ -26,5 +31,9 @@ public class UserEntity {
 
     public String getName() {
         return this.name;
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 }

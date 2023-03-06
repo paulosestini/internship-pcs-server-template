@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.graphql.test.tester.GraphQlTester;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class UserTest {
         Map<String, Object> input = new HashMap<String, Object>();
         input.put("name", "Paulo");
         input.put("password", "abcd123");
+        input.put("birthdate", LocalDate.parse("2000-06-02"));
 
         UserModel user = this.tester.documentName("createUser")
                 .variable("input", input)
@@ -46,14 +48,15 @@ public class UserTest {
 
         assertThat(user.getId()).isNotNull();
         assertThat(user.getName()).isEqualTo(input.get("name"));
-        assertThat(user).hasOnlyFields("id", "name");
+        assertThat(user).hasOnlyFields("id", "name", "birthdate");
         assertThat(userEntity.getId()).isEqualTo(Long.parseLong(user.getId()));
         assertThat(userEntity.getName()).isEqualTo(input.get("name"));
+        assertThat(userEntity.getBirthdate()).isEqualTo(input.get("birthdate"));
     }
 
     @Test
     public void getUser() {
-        UserEntity userEntity = this.repository.save(new UserEntity("Paulo", "abcd1234"));
+        UserEntity userEntity = this.repository.save(new UserEntity("Paulo", "abcd1234", LocalDate.parse("2000-06-05")));
         String id = userEntity.getId().toString();
         Map<String, Object> input = new HashMap<String, Object>();
         input.put("id", id);
@@ -67,7 +70,7 @@ public class UserTest {
 
         assertThat(user.getId()).isEqualTo(id);
         assertThat(user.getName()).isEqualTo(userEntity.getName());
-        assertThat(user).hasOnlyFields("id", "name");
+        assertThat(user).hasOnlyFields("id", "name", "birthdate");
     }
 
 }
