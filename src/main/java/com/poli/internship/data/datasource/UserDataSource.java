@@ -7,6 +7,8 @@ import com.poli.internship.domain.models.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class UserDataSource {
     @Autowired
@@ -17,8 +19,8 @@ public class UserDataSource {
         return UserMapper.INSTANCE.userEntityToModel(userEntity);
     }
 
-    public UserModel createUser(String name, String password) {
-        UserEntity userEntity = repository.save(new UserEntity(name, password));
+    public UserModel createUser(String name, String password, LocalDate birthdate) {
+        UserEntity userEntity = repository.save(new UserEntity(name, password, birthdate));
         return UserMapper.INSTANCE.userEntityToModel(userEntity);
     }
 

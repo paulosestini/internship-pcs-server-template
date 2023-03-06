@@ -1,6 +1,9 @@
+scalar Date
+
 type User {
     id: ID!
     name: String!
+    birthdate: Date!
 }
 
 input GetUserInput {
@@ -10,4 +13,5 @@ input GetUserInput {
 input CreateUserInput {
     name: String!
     password: String!
+    birthdate: Date!
 }

@@ -9,6 +9,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @Controller
@@ -27,6 +28,6 @@ public class UserController {
     @MutationMapping
     public UserModel createUser(@Argument Map input) {
         Map data = (Map) input.get("input");
-        return this.createUserUseCase.exec((String) data.get("name"), (String) data.get("password"));
+        return this.createUserUseCase.exec((String) data.get("name"), (String) data.get("password"), (LocalDate) data.get("birthdate"));
     }
 }
